@@ -6,10 +6,18 @@ namespace Mino
 	constexpr int kBlockHeight = 4;		// èc
 	constexpr int kBlockWidth = 4;		// â°
 
+	constexpr int kBlocks[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,1,1,0},
+		{0,1,1,0},
+		{0,0,0,0}
+	};
 }
 
-mino::mino()
+mino::mino() :
+	m_block()
 {
+	
 }
 
 mino::~mino()
@@ -18,6 +26,7 @@ mino::~mino()
 
 void mino::init()
 {
+	
 }
 
 void mino::end()

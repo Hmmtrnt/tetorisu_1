@@ -1,5 +1,7 @@
 // ƒ~ƒm
 #pragma once
+#include "common.h"
+
 class mino
 {
 public:
@@ -12,6 +14,7 @@ public:
 	void draw();
 
 private:
-	int block[Mino::kBlockHeight][Mino::kBlockWidth];
-	int blocks[Mino::kBlockHeight][Mino::kBlockWidth];
+	int m_block[BLOCK_HEIGHT][BLOCK_WIDTH];
+	int m_blockX;
+	int m_blockY;
 };
