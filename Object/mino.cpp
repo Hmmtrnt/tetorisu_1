@@ -5,7 +5,8 @@ mino::mino() :
 	m_block(),
 	m_posX(7),
 	m_posY(0),
-	m_count(0)
+	m_count(0.0f),
+	m_speed(0.0f)
 {
 	
 }
@@ -23,6 +24,8 @@ void mino::init()
 			m_block[y][x] = Mino::kBlocks[y][x];
 		}
 	}
+
+	m_speed = 0.5f;
 }
 
 void mino::end()
@@ -51,4 +54,10 @@ void mino::draw()
 void mino::drawConfirm()
 {
 	DrawFormatString(0, 20, Mino::kColor_Black, "m_count = %d", m_count);
+}
+
+void mino::moveBlock()
+{
+	m_count += m_speed;
+	m_posY = m_count / DRAW_BLOCK_WIDTH;
 }

@@ -15,6 +15,9 @@ public:
 	void draw();
 	// 変数確認用描画処理
 	void drawConfirm();
+	// ミノの動く処理
+	void moveBlock();
+
 
 private:
 	int m_block[BLOCK_HEIGHT][BLOCK_WIDTH];
@@ -22,5 +25,6 @@ private:
 	int m_posX;
 	int m_posY;
 
-	int m_count;
+	float m_count;
+	float m_speed;
 };
