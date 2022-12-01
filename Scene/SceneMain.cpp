@@ -50,5 +50,4 @@ void SceneMain::draw()
 	m_stage->draw();
 	m_mino->drawConfirm();
 	m_mino->draw();
-//	DrawString(0, 0, "SceneMain", GetColor(255, 255, 255));
 }
