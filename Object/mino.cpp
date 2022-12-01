@@ -45,7 +45,7 @@ void mino::draw()
 			if (m_block[y][x] == 1)
 			{
 				DrawFormatString(100 + m_posX * DRAW_BLOCK_WIDTH + x * DRAW_BLOCK_WIDTH,
-								 160 + m_count + y * DRAW_BLOCK_WIDTH, Mino::kColor_Red, "¡");
+								 160 + (int)m_count + y * DRAW_BLOCK_WIDTH, Mino::kColor_Red, "¡");
 			}
 		}
 	}
@@ -59,7 +59,7 @@ void mino::drawConfirm()
 void mino::moveBlock()
 {
 	m_count += m_speed;
-	m_posY = m_count / DRAW_BLOCK_WIDTH;
+	m_posY = (int)m_count / DRAW_BLOCK_WIDTH;
 	if (m_count > DRAW_BLOCK_WIDTH * 19)
 	{
 		m_count = 0;
