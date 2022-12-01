@@ -11,7 +11,7 @@
 #define STAGE_WIDTH 12
 
 // ƒuƒƒbƒN‚ÌŠÔ‚Ì•
-#define DRAW_BLOCK_WIDTH 20
+#define BLOCK_WIDTH 20
 
 namespace Mino
 {
