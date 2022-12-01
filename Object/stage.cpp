@@ -1,14 +1,18 @@
 #include "stage.h"
 #include "common.h"
+#include "mino.h"
 
 stage::stage() :
 	m_stage(),
-	m_backHandle(-1)
+	m_backHandle(-1),
+	m_hitFlag(0)
 {
+	m_mino = new mino;
 }
 
 stage::~stage()
 {
+	delete m_mino;
 }
 
 void stage::init()
@@ -52,4 +56,23 @@ void stage::draw()
 			}
 		}
 	}
+}
+
+void stage::wall()
+{
+	// ‰E‚Ì•Ç
+	//for (int y = 0; y < BLOCK_HEIGHT; y++)
+	//{
+	//	for (int x = 0; x < BLOCK_WIDTH; x++)
+	//	{
+	//		if (m_mino->m_block[y][x] != 0)
+	//		{
+	//			if (m_stage[m_mino->m_getPosX() + y][m_mino->m_getPosY() + (x + 1)] != 0)
+	//			{
+	//				m_hitFlag = 1;
+	//			}
+				//else if ((int)(m_mino->m_count))
+	//		}
+	//	}
+	//}
 }
