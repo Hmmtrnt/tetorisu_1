@@ -8,6 +8,33 @@
 
 // ステージの幅
 #define STAGE_HEIGHT 21
-#define STAGE_WIDTH 11
+#define STAGE_WIDTH 12
 
+// ブロックの間の幅
 #define DRAW_BLOCK_WIDTH 20
+
+namespace Mino
+{
+	// ミノの大きさ
+	constexpr int kBlockHeight = 4;		// 縦
+	constexpr int kBlockWidth = 4;		// 横
+
+	// 色
+	const int kColor_Red = GetColor(255, 0, 0);		// 赤
+	const int kColor_Black = GetColor(0, 0, 0);		// 黒
+
+	// ミノの形
+	constexpr int kBlocks[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,1,1,0},
+		{0,1,1,0},
+		{0,0,0,0}
+	};
+}
+
+namespace Stage
+{
+	// 色
+	const int kColor_Red = GetColor(255, 0, 0);		// 赤
+	const int kColor_Black = GetColor(0, 0, 0);		// 黒
+}

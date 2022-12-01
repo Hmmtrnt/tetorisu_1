@@ -3,6 +3,7 @@
 #include "SceneBase.h"
 
 class mino;
+class stage;
 
 class SceneMain : public SceneBase
 {
@@ -17,4 +18,5 @@ public:
 
 private:
 	mino* m_mino;
+	stage* m_stage;
 };
