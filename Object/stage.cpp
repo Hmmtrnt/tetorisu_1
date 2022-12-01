@@ -44,11 +44,11 @@ void stage::draw()
 		{
 			if (m_stage[y][x] == 1)
 			{
-				DrawFormatString(200 + x * BLOCK_WIDTH,200 + y * BLOCK_WIDTH, Stage::kColor_Red, "Å°");
+				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH,200 + y * DRAW_BLOCK_WIDTH, Stage::kColor_Red, "Å°");
 			}
 			else if (m_stage[y][x] == 9)
 			{
-				DrawFormatString(200 + x * BLOCK_WIDTH, 200 + y * BLOCK_WIDTH, Stage::kColor_Black, "Å°");
+				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH, 200 + y * DRAW_BLOCK_WIDTH, Stage::kColor_Black, "Å°");
 			}
 		}
 	}

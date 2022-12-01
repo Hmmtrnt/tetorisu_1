@@ -10,8 +10,8 @@
 #define STAGE_HEIGHT 21
 #define STAGE_WIDTH 12
 
-// ブロックの間の幅
-#define BLOCK_WIDTH 20
+// 描画するブロックの間の幅
+#define DRAW_BLOCK_WIDTH 20
 
 namespace Mino
 {
