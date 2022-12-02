@@ -13,7 +13,7 @@
 // 描画するブロックの間の幅
 #define DRAW_BLOCK_WIDTH 20
 
-namespace Mino
+namespace kMino
 {
 	// ミノの大きさ
 	constexpr int kBlockHeight = 4;		// 縦
@@ -32,7 +32,7 @@ namespace Mino
 	};
 }
 
-namespace Stage
+namespace kStage
 {
 	// 色
 	const int kColor_Red = GetColor(255, 0, 0);		// 赤

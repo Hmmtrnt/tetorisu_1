@@ -2,11 +2,13 @@
 #pragma once
 #include "common.h"
 
-class mino
+class Stage;
+
+class Mino
 {
 public:
-	mino();
-	virtual ~mino();
+	Mino();
+	virtual ~Mino();
 
 	void init();
 	void end();
@@ -17,8 +19,9 @@ public:
 	void drawConfirm();
 	// ƒ~ƒm‚Ì“®‚­ˆ—
 	void moveBlock();
+	// ƒ~ƒm‚ğŒÅ’è‚·‚éˆ—
+	void stopBlock();
 
-	int m_block[BLOCK_HEIGHT][BLOCK_WIDTH];
 
 	int m_getPosX()const { return m_posX; }
 	int m_getPosY()const { return m_posY; }
@@ -26,11 +29,12 @@ public:
 	int m_getCount()const { return m_countY; }
 
 private:
+	int m_block[BLOCK_HEIGHT][BLOCK_WIDTH];
 	int m_posX;
 	int m_posY;
 
 	float m_countY;
 	float m_speed;
 
-protected:
+	Stage* m_Pstage;
 };

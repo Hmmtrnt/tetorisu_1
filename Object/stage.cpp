@@ -1,21 +1,20 @@
-#include "stage.h"
+#include "Stage.h"
 #include "common.h"
 #include "mino.h"
 
-stage::stage() :
+Stage::Stage() :
 	m_stage(),
-	m_backHandle(-1),
-	m_hitFlag(0)
+	m_backHandle(-1)
 {
-	m_mino = new mino;
+	m_mino = new Mino;
 }
 
-stage::~stage()
+Stage::~Stage()
 {
 	delete m_mino;
 }
 
-void stage::init()
+void Stage::init()
 {
 	// ステージの形
 	for (int y = 0; y < STAGE_HEIGHT; y++)
@@ -30,16 +29,16 @@ void stage::init()
 	m_backHandle = LoadGraph("data/back2.jpg");
 }
 
-void stage::end()
+void Stage::end()
 {
 	DeleteGraph(m_backHandle);
 }
 
-void stage::update()
+void Stage::update()
 {
 }
 
-void stage::draw()
+void Stage::draw()
 {
 	DrawGraph(0, 0, m_backHandle, true);
 	for (int y = 0; y < STAGE_HEIGHT; y++)
@@ -48,31 +47,12 @@ void stage::draw()
 		{
 			if (m_stage[y][x] == 1)
 			{
-				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH,200 + y * DRAW_BLOCK_WIDTH, Stage::kColor_Red, "■");
+				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH,200 + y * DRAW_BLOCK_WIDTH, kStage::kColor_Red, "■");
 			}
 			else if (m_stage[y][x] == 9)
 			{
-				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH, 200 + y * DRAW_BLOCK_WIDTH, Stage::kColor_Black, "■");
+				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH, 200 + y * DRAW_BLOCK_WIDTH, kStage::kColor_Black, "■");
 			}
 		}
 	}
-}
-
-void stage::wall()
-{
-	// 右の壁
-	//for (int y = 0; y < BLOCK_HEIGHT; y++)
-	//{
-	//	for (int x = 0; x < BLOCK_WIDTH; x++)
-	//	{
-	//		if (m_mino->m_block[y][x] != 0)
-	//		{
-	//			if (m_stage[m_mino->m_getPosX() + y][m_mino->m_getPosY() + (x + 1)] != 0)
-	//			{
-	//				m_hitFlag = 1;
-	//			}
-				//else if ((int)(m_mino->m_count))
-	//		}
-	//	}
-	//}
 }

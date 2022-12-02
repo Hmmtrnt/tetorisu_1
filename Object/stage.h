@@ -1,26 +1,24 @@
 #pragma once
 #include "common.h"
 
-class mino;
+class Mino;
 
-class stage
+class Stage
 {
 public:
-	stage();
-	virtual ~stage();
+	Stage();
+	virtual ~Stage();
 
 	void init();
 	void end();
 	void update();
 	void draw();
-	void wall();
+
+	int m_stage[STAGE_HEIGHT][STAGE_WIDTH];
 
 private:
-	int m_stage[STAGE_HEIGHT][STAGE_WIDTH];
 	// ”wŒi‚Ìƒnƒ“ƒhƒ‹
 	int m_backHandle;
-	// ”»’è‚ÉG‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int m_hitFlag;
 
-	mino* m_mino;
+	Mino* m_mino;
 };

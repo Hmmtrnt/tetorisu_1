@@ -7,8 +7,8 @@
 
 SceneMain::SceneMain()
 {
-	m_mino = new mino;
-	m_stage = new stage;
+	m_mino = new Mino;
+	m_stage = new Stage;
 }
 
 SceneMain::~SceneMain()
