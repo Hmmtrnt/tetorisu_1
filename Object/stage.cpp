@@ -17,7 +17,7 @@ Stage::~Stage()
 
 void Stage::init()
 {
-	// ステージの形
+	// 盤面の外枠
 	for (int y = 0; y < STAGE_HEIGHT; y++)
 	{
 		for (int x = 0; x < STAGE_WIDTH; x++)
