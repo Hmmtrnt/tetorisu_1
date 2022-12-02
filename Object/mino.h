@@ -35,7 +35,5 @@ private:
 	float m_countY;
 	float m_speed;
 
-	bool HitFlag;
-
 	Stage* m_Pstage;
 };

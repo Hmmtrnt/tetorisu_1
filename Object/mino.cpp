@@ -9,7 +9,6 @@ Mino::Mino() :
 	m_posY(0),
 	m_countY(0.0f),
 	m_speed(0.0f),
-	HitFlag(false),
 	m_Pstage(nullptr)
 {
 	m_Pstage = new Stage;
@@ -22,6 +21,7 @@ Mino::~Mino()
 
 void Mino::init()
 {
+	// ”Õ–Ê‚ÌŠO˜g
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
@@ -29,11 +29,12 @@ void Mino::init()
 			m_block[y][x] = kMino::kBlocks[y][x];
 		}
 	}
+	// ƒ~ƒm‚ÌˆÊ’uî•ñ
 	m_posX = 4;
 	m_posY = 0;
 	m_countY = 0.0f;
+	// ƒ~ƒm‚Ì—Ž‚¿‚é‘¬‚³
 	m_speed = 0.5f;
-	HitFlag = false;
 }
 
 void Mino::end()
@@ -72,7 +73,6 @@ void Mino::draw()
 			}
 		}
 	}
-	//stopBlock();
 }
 
 void Mino::drawConfirm()
