@@ -1,14 +1,18 @@
 #include "Stage.h"
 #include "common.h"
-#include "mino.h"
+#include "Mino.h"
 
 Stage::Stage() :
-	m_backHandle(-1)
+	m_stage(),
+	m_backHandle(-1),
+	m_mino(nullptr)
 {
+	m_mino = new Mino;
 }
 
 Stage::~Stage()
 {
+	delete m_mino;
 }
 
 void Stage::init()
@@ -52,4 +56,54 @@ void Stage::draw()
 			}
 		}
 	}
+}
+
+bool Stage::HitFlagLeft()
+{
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_mino->m_block[y][x] != 0)
+			{
+				if (m_stage[m_mino->m_getPosY() + y][m_mino->m_getPosX() + (x - 1)] != 0)
+				{
+					return true;
+				}
+				else if ((m_mino->m_getCount() - (m_mino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
+				{
+					if (m_stage[m_mino->m_getPosY() + (y + 1)][m_mino->m_getPosX() + (x - 1)] != 0)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool Stage::HitFlagRight()
+{
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_mino->m_block[y][x] != 0)
+			{
+				if (m_stage[m_mino->m_getPosY() + y][m_mino->m_getPosX() + (x + 1)] != 0)
+				{
+					return true;
+				}
+				else if ((m_mino->m_getCount() - (m_mino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
+				{
+					if (m_stage[m_mino->m_getPosY() + (y + 1)][m_mino->m_getPosX() + (x + 1)] != 0)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
 }

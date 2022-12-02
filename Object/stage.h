@@ -14,9 +14,14 @@ public:
 	void update();
 	void draw();
 
+	bool HitFlagLeft();
+	bool HitFlagRight();
+
 	int m_stage[STAGE_HEIGHT][STAGE_WIDTH];
 
 private:
 	// ”wŒi‚Ìƒnƒ“ƒhƒ‹
 	int m_backHandle;
+
+	Mino* m_mino;
 };

@@ -8,7 +8,9 @@ Mino::Mino() :
 	m_posX(4),
 	m_posY(0),
 	m_countY(0.0f),
-	m_speed(0.0f)
+	m_speed(0.0f),
+	HitFlag(false),
+	m_Pstage(nullptr)
 {
 	m_Pstage = new Stage;
 }
@@ -31,6 +33,7 @@ void Mino::init()
 	m_posY = 0;
 	m_countY = 0.0f;
 	m_speed = 0.5f;
+	HitFlag = false;
 }
 
 void Mino::end()
@@ -39,26 +42,21 @@ void Mino::end()
 
 void Mino::update()
 {
-	if (Pad::isTrigger(PAD_INPUT_RIGHT))
+	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
-		m_posX += 1;
+		if (!m_Pstage->HitFlagLeft())
+		{
+			m_posX--;
+		}
 	}
-	if (m_posX >= 8)
+	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
-		m_posX = 8;
+		if (!m_Pstage->HitFlagRight())
+		{
+			m_posX++;
+		}
 	}
-	if (Pad::isTrigger(PAD_INPUT_LEFT))
-	{
-		m_posX -= 1;
-	}
-	if (m_posX <= 0)
-	{
-		m_posX = 0;
-	}
-	if (Pad::isTrigger(PAD_INPUT_DOWN))
-	{
-		m_countY += DRAW_BLOCK_WIDTH;
-	}
+
 }
 
 void Mino::draw()
@@ -74,7 +72,7 @@ void Mino::draw()
 			}
 		}
 	}
-	stopBlock();
+	//stopBlock();
 }
 
 void Mino::drawConfirm()
