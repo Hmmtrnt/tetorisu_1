@@ -21,7 +21,7 @@ Mino::~Mino()
 
 void Mino::init()
 {
-	// ”Õ–Ê‚ÌŠO˜g
+	// ƒ~ƒm‚Ì‰ŠúˆÊ’u
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
