@@ -55,6 +55,10 @@ void Mino::update()
 	{
 		m_posX = 0;
 	}
+	if (Pad::isTrigger(PAD_INPUT_DOWN))
+	{
+		m_countY += DRAW_BLOCK_WIDTH;
+	}
 }
 
 void Mino::draw()
@@ -70,6 +74,7 @@ void Mino::draw()
 			}
 		}
 	}
+	stopBlock();
 }
 
 void Mino::drawConfirm()

@@ -19,6 +19,4 @@ public:
 private:
 	// ”wŒi‚Ìƒnƒ“ƒhƒ‹
 	int m_backHandle;
-
-	Mino* m_mino;
 };

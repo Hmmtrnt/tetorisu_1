@@ -18,5 +18,5 @@ public:
 
 private:
 	Mino* m_mino;
-	Stage* m_stage;
+	Stage* m_Pstage;
 };

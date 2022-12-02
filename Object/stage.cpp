@@ -3,15 +3,12 @@
 #include "mino.h"
 
 Stage::Stage() :
-	m_stage(),
 	m_backHandle(-1)
 {
-	m_mino = new Mino;
 }
 
 Stage::~Stage()
 {
-	delete m_mino;
 }
 
 void Stage::init()
