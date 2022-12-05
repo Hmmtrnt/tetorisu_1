@@ -3,10 +3,16 @@
 #include "Mino.h"
 
 Stage::Stage() :
-	m_stage(),
 	m_backHandle(-1),
 	m_pMino(nullptr)
 {
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			m_stage[y][x] = 0;
+		}
+	}
 	m_pMino = new Mino;
 }
 
