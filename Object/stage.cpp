@@ -64,6 +64,21 @@ void Stage::draw()
 	}
 }
 
+void Stage::stopBlock()
+{
+	if (m_pMino->m_getCount() > DRAW_BLOCK_WIDTH * 17)
+	{
+		for (int y = 0; y < BLOCK_HEIGHT; y++)
+		{
+			for (int x = 0; x < BLOCK_WIDTH; x++)
+			{
+				m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + x] += m_pMino->m_block[y][x];
+			}
+		}
+		init();
+	}
+}
+
 bool Stage::HitFlagLeft()
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)

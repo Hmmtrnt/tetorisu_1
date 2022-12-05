@@ -48,7 +48,6 @@ void Mino::end()
 
 void Mino::update()
 {
-	m_pPlayer->update(m_posX);
 	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
 		if (!m_pStage->HitFlagLeft())
@@ -80,6 +79,7 @@ void Mino::draw()
 		}
 	}
 }
+
 // Šm”F—p•`‰æ
 void Mino::drawConfirm()
 {
@@ -98,17 +98,17 @@ void Mino::moveBlock()
 	}
 }
 
-void Mino::stopBlock()
-{
-	if (m_countY > DRAW_BLOCK_WIDTH * 17)
-	{
-		for (int y = 0; y < BLOCK_HEIGHT; y++)
-		{
-			for (int x = 0; x < BLOCK_WIDTH; x++)
-			{
-				m_pStage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
-			}
-		}
-		init();
-	}
-}
+//void Mino::stopBlock()
+//{
+//	if (m_countY > DRAW_BLOCK_WIDTH * 17)
+//	{
+//		for (int y = 0; y < BLOCK_HEIGHT; y++)
+//		{
+//			for (int x = 0; x < BLOCK_WIDTH; x++)
+//			{
+//				m_pStage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
+//			}
+//		}
+//		init();
+//	}
+//}

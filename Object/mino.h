@@ -19,7 +19,7 @@ public:
 	// ƒ~ƒm‚Ì“®‚­ˆ—
 	virtual void moveBlock();
 	// ƒ~ƒm‚ğŒÅ’è‚·‚éˆ—
-	virtual void stopBlock();
+	//virtual void stopBlock();
 
 
 	int m_getPosX()const { return m_posX; }
