@@ -6,8 +6,12 @@
 Mino::Mino() :
 	m_posX(4),
 	m_posY(0),
+	time(0),
 	m_countY(0.0f),
-	m_speed(0.0f)
+	m_speed(0.0f),
+	m_makeMinoFlag(false),
+	m_hitMinoFlag(false),
+	m_pStage(nullptr)
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
 	{
@@ -31,15 +35,27 @@ void Mino::init()
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
-			m_block[y][x] = kMino::kBlocks[y][x];
+			m_block[y][x] = kMino::kOMino[y][x];
 		}
 	}
 	// ƒ~ƒm‚ÌˆÊ’uî•ñ
 	m_posX = 4;
 	m_posY = 0;
+
+	time = 70;
+
 	m_countY = 0.0f;
 	// ƒ~ƒm‚Ì—Ž‚¿‚é‘¬‚³
 	m_speed = 0.5f;
+	m_makeMinoFlag = true;
+}
+
+void Mino::initRevival()
+{
+	m_posX = 4;
+	m_posY = 0;
+	m_countY = 0;
+	m_makeMinoFlag = true;
 }
 
 void Mino::end()
@@ -50,19 +66,25 @@ void Mino::update()
 {
 	/*if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
-		if (!HitFlagLeft())
+		wallLeft();
+		if (m_hitMinoFlag == false)
 		{
 			m_posX--;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
-		if (!HitFlagRight())
+		wallRight();
+		if (m_hitMinoFlag == false)
 		{
 			m_posX++;
 		}
 	}*/
-	if (m_posY > DRAW_BLOCK_WIDTH * 17 - 2)
+	/*if (m_countY > DRAW_BLOCK_WIDTH * 17 - 2)
+	{
+		return;
+	}*/
+	if (!HitFlagBottom())
 	{
 		return;
 	}
@@ -82,15 +104,16 @@ void Mino::update()
 			m_posX = 8;
 		}
 	}
-	if (Pad::isTrigger(PAD_INPUT_DOWN) == 1)
+	if (Pad::isPress(PAD_INPUT_DOWN) == 1)
 	{
-		DrawString(0, 0, "‰Ÿ‚µ‚½", GetColor(0, 0, 0));
 		m_countY += DRAW_BLOCK_WIDTH;
 		if (m_posY >= DRAW_BLOCK_WIDTH * 17 - 2)
 		{
 			m_posY = DRAW_BLOCK_WIDTH * 17 - 2;
 		}
 	}
+	saveMino();
+	makeMino();
 }
 
 void Mino::draw()
@@ -116,8 +139,16 @@ void Mino::drawConfirm()
 
 void Mino::moveBlock()
 {
-	m_countY += m_speed;
-	m_posY = (int)m_countY / DRAW_BLOCK_WIDTH;
+	/*m_countY += m_speed;
+	m_posY = (int)m_countY / DRAW_BLOCK_WIDTH;*/
+	time--;
+	if (time <= 0)
+	{
+		time = 70;
+		m_countY += DRAW_BLOCK_WIDTH;
+	}
+	
+	//m_posY = (int)m_countY / DRAW_BLOCK_WIDTH;
 	// ”Õ–Ê‚Ì’ê‚É‚Â‚¢‚½‚ç‰º‚Ö‚Í“®‚©‚È‚¢
 	if (m_countY > DRAW_BLOCK_WIDTH * 17)
 	{
@@ -128,17 +159,7 @@ void Mino::moveBlock()
 
 void Mino::stopBlock()
 {
-	if (m_countY > DRAW_BLOCK_WIDTH * 17)
-	{
-		for (int y = 0; y < BLOCK_HEIGHT; y++)
-		{
-			for (int x = 0; x < BLOCK_WIDTH; x++)
-			{
-				m_pStage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
-			}
-		}
-		init();
-	}
+	
 }
 
 void Mino::saveMino()
@@ -148,6 +169,71 @@ void Mino::saveMino()
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
 			m_pStage->m_stage[m_posY + y][m_posX + x];
+		}
+	}
+}
+
+void Mino::makeMino()
+{
+	if (m_makeMinoFlag == true)
+	{
+		for (int y = 0; y < BLOCK_HEIGHT; y++)
+		{
+			for (int x = 0; x < BLOCK_WIDTH; x++)
+			{
+				m_block[y][x] = kMino::kOMino[y][x];
+			}
+		}
+		m_makeMinoFlag = false;
+	}
+}
+
+void Mino::wallLeft()
+{
+	m_hitMinoFlag = false;
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_block[y][x] != 0)
+			{
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x - 1)] != 0)
+				{
+					m_hitMinoFlag = true;
+				}
+				else if ((int)(m_countY - (m_posY * DRAW_BLOCK_WIDTH)) > 0)
+				{
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x - 1)] != 0)
+					{
+						m_hitMinoFlag = true;
+					}
+				}
+			}
+		}
+	}
+}
+
+void Mino::wallRight()
+{
+	m_hitMinoFlag = false;
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_block[y][x] != 0)
+			{
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x + 1)] != 0)
+				{
+					m_hitMinoFlag = true;
+				}
+				else if ((int)(m_countY - (m_posY * DRAW_BLOCK_WIDTH)) > 0)
+				{
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x + 1)] != 0)
+					{
+						m_hitMinoFlag = true;
+					}
+				}
+			}
 		}
 	}
 }
@@ -203,6 +289,25 @@ bool Mino::HitFlagRight()
 					{
 						return true;
 					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+// ’n–Ê‚Ì”»’è
+bool Mino::HitFlagBottom()
+{
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_block[y][x] != 0)
+			{
+				if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + x] != 0)
+				{
+					return true;
 				}
 			}
 		}

@@ -24,7 +24,7 @@ namespace kMino
 	const int kColor_Black = GetColor(0, 0, 0);		// çï
 
 	// É~ÉmÇÃå`
-	constexpr int kBlocks[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+	constexpr int kOMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
 		{0,0,0,0},
 		{0,1,1,0},
 		{0,1,1,0},
