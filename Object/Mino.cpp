@@ -120,6 +120,7 @@ bool Mino::HitFlagLeft()
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
+			// ƒ~ƒm‚Ì”»’è
 			if (m_block[y][x] != 0)
 			{
 				// ¶
@@ -148,6 +149,7 @@ bool Mino::HitFlagRight()
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
+			// ƒ~ƒm‚Ì”»’è
 			if (m_block[y][x] != 0)
 			{
 				// ‰E

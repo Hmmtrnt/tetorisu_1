@@ -15,7 +15,7 @@ public:
 	virtual void end();				// I—¹ˆ—
 	virtual SceneBase* update();	// XVˆ—
 	virtual void draw();			// •`‰æˆ—
-
+	
 private:
 	Mino* m_pMino;
 	Stage* m_pStage;
