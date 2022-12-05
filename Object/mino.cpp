@@ -1,6 +1,6 @@
 #include "Mino.h"
-#include "Stage.h"
 #include "common.h"
+#include "Stage.h"
 #include "Pad.h"
 
 Mino::Mino() :
