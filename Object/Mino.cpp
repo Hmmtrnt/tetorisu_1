@@ -7,8 +7,7 @@ Mino::Mino() :
 	m_posX(4),
 	m_posY(0),
 	m_countY(0.0f),
-	m_speed(0.0f),
-	m_pStage(nullptr)
+	m_speed(0.0f)
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
 	{
@@ -17,13 +16,12 @@ Mino::Mino() :
 			m_block[y][x] = 0;
 		}
 	}
-
-	m_pStage = new Stage;
+	m_pPlayer = new Player;
 }
 
 Mino::~Mino()
 {
-	delete m_pStage;
+	delete m_pPlayer;
 }
 
 void Mino::init()
@@ -50,6 +48,7 @@ void Mino::end()
 
 void Mino::update()
 {
+	m_pPlayer->update(m_posX);
 	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
 		if (!m_pStage->HitFlagLeft())
@@ -81,7 +80,7 @@ void Mino::draw()
 		}
 	}
 }
-
+// Šm”F—p•`‰æ
 void Mino::drawConfirm()
 {
 	DrawFormatString(0, 20, kMino::kColor_Black, "m_count = %d", m_countY);
