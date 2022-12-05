@@ -35,6 +35,7 @@ void Mino::init()
 	m_countY = 0.0f;
 	// ƒ~ƒm‚Ì—Ž‚¿‚é‘¬‚³
 	m_speed = 0.5f;
+	m_Pstage->init();
 }
 
 void Mino::end()
