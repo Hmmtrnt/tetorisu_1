@@ -34,7 +34,6 @@ void Stage::init()
 		}
 	}
 	m_backHandle = LoadGraph("data/back2.jpg");
-	m_pMino->init();
 }
 
 void Stage::end()
