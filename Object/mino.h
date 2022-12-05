@@ -21,6 +21,8 @@ public:
 	virtual void moveBlock();
 	// ミノを固定する処理
 	virtual void stopBlock();
+	// ゲームオーバー処理
+	virtual void gameOver();
 
 	bool HitFlagLeft();
 	bool HitFlagRight();
