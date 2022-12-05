@@ -22,7 +22,7 @@ public:
 	// ミノを固定する処理
 	virtual void stopBlock();
 	// ゲームオーバー処理
-	virtual void gameOver();
+	virtual void saveMino();
 
 	bool HitFlagLeft();
 	bool HitFlagRight();

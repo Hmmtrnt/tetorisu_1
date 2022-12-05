@@ -141,9 +141,15 @@ void Mino::stopBlock()
 	}
 }
 
-void Mino::gameOver()
+void Mino::saveMino()
 {
-
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			m_pStage->m_stage[m_posY + y][m_posX + x];
+		}
+	}
 }
 
 // ç∂ÇÃï«îªíË
