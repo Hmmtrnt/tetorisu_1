@@ -16,12 +16,10 @@ Mino::Mino() :
 			m_block[y][x] = 0;
 		}
 	}
-	m_pPlayer = new Player;
 }
 
 Mino::~Mino()
 {
-	delete m_pPlayer;
 }
 
 void Mino::init()
@@ -48,7 +46,7 @@ void Mino::end()
 
 void Mino::update()
 {
-	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
+	/*if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
 		if (!m_pStage->HitFlagLeft())
 		{
@@ -61,7 +59,7 @@ void Mino::update()
 		{
 			m_posX++;
 		}
-	}
+	}*/
 
 }
 
