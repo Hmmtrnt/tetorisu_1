@@ -113,6 +113,7 @@ void Mino::stopBlock()
 	}
 }
 
+// ç∂ÇÃï«îªíË
 bool Mino::HitFlagLeft()
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
@@ -140,6 +141,7 @@ bool Mino::HitFlagLeft()
 	return false;
 }
 
+// âEÇÃï«îªíË
 bool Mino::HitFlagRight()
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
