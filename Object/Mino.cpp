@@ -48,21 +48,49 @@ void Mino::end()
 
 void Mino::update()
 {
-	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
+	/*if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
-		if (HitFlagLeft())
+		if (!HitFlagLeft())
 		{
 			m_posX--;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
-		if (HitFlagRight())
+		if (!HitFlagRight())
 		{
 			m_posX++;
 		}
+	}*/
+	if (m_posY > DRAW_BLOCK_WIDTH * 17 - 2)
+	{
+		return;
 	}
-
+	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
+	{
+		m_posX--;
+		if (m_posX <= 0)
+		{
+			m_posX = 0;
+		}
+	}
+	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
+	{
+		m_posX++;
+		if (m_posX >= 8)
+		{
+			m_posX = 8;
+		}
+	}
+	if (Pad::isTrigger(PAD_INPUT_DOWN) == 1)
+	{
+		DrawString(0, 0, "‰Ÿ‚µ‚½", GetColor(0, 0, 0));
+		m_countY += DRAW_BLOCK_WIDTH;
+		if (m_posY >= DRAW_BLOCK_WIDTH * 17 - 2)
+		{
+			m_posY = DRAW_BLOCK_WIDTH * 17 - 2;
+		}
+	}
 }
 
 void Mino::draw()
@@ -113,6 +141,17 @@ void Mino::stopBlock()
 	}
 }
 
+void Mino::saveMino()
+{
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			m_pStage->m_stage[m_posY + y][m_posX + x];
+		}
+	}
+}
+
 // ¶‚Ì•Ç”»’è
 bool Mino::HitFlagLeft()
 {
@@ -124,14 +163,14 @@ bool Mino::HitFlagLeft()
 			if (m_block[y][x] != 0)
 			{
 				// ¶
-				if (m_pStage->m_stage[m_posY + y][m_posX + (x - 1)] != 0)
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x - 1)] == 0)
 				{
 					return true;
 				}
 				// ¶‰º
-				else if ((m_countY - (m_posY * DRAW_BLOCK_WIDTH)) > 0)
+				else if ((int)(m_countY - (m_posY * DRAW_BLOCK_WIDTH)) > 0)
 				{
-					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x - 1)] != 0)
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x - 1)] == 0)
 					{
 						return true;
 					}
@@ -153,14 +192,14 @@ bool Mino::HitFlagRight()
 			if (m_block[y][x] != 0)
 			{
 				// ‰E
-				if (m_pStage->m_stage[m_posY + y][m_posX + (x + 1)] != 0)
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x + 1)] == 0)
 				{
 					return true;
 				}
 				// ‰E‰º
-				else if ((m_countY - (m_countY * DRAW_BLOCK_WIDTH)) > 0)
+				else if ((int)(m_countY - (m_countY * DRAW_BLOCK_WIDTH)) > 0)
 				{
-					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x + 1)] != 0)
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x + 1)] == 0)
 					{
 						return true;
 					}
