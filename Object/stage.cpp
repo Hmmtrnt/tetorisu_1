@@ -73,10 +73,12 @@ bool Stage::HitFlagLeft()
 		{
 			if (m_pMino->m_block[y][x] != 0)
 			{
+				// ¶
 				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x - 1)] != 0)
 				{
 					return true;
 				}
+				// ¶‰º
 				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
 				{
 					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x - 1)] != 0)
@@ -98,10 +100,12 @@ bool Stage::HitFlagRight()
 		{
 			if (m_pMino->m_block[y][x] != 0)
 			{
+				// ‰E
 				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x + 1)] != 0)
 				{
 					return true;
 				}
+				// ‰E‰º
 				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
 				{
 					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x + 1)] != 0)
