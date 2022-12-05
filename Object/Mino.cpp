@@ -16,10 +16,12 @@ Mino::Mino() :
 			m_block[y][x] = 0;
 		}
 	}
+	m_pStage = new Stage;
 }
 
 Mino::~Mino()
 {
+	delete m_pStage;
 }
 
 void Mino::init()
@@ -46,7 +48,7 @@ void Mino::end()
 
 void Mino::update()
 {
-	/*if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
+	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
 		if (!m_pStage->HitFlagLeft())
 		{
@@ -59,7 +61,7 @@ void Mino::update()
 		{
 			m_posX++;
 		}
-	}*/
+	}
 
 }
 
@@ -96,17 +98,71 @@ void Mino::moveBlock()
 	}
 }
 
-//void Mino::stopBlock()
-//{
-//	if (m_countY > DRAW_BLOCK_WIDTH * 17)
-//	{
-//		for (int y = 0; y < BLOCK_HEIGHT; y++)
-//		{
-//			for (int x = 0; x < BLOCK_WIDTH; x++)
-//			{
-//				m_pStage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
-//			}
-//		}
-//		init();
-//	}
-//}
+void Mino::stopBlock()
+{
+	if (m_countY > DRAW_BLOCK_WIDTH * 17)
+	{
+		for (int y = 0; y < BLOCK_HEIGHT; y++)
+		{
+			for (int x = 0; x < BLOCK_WIDTH; x++)
+			{
+				m_pStage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
+			}
+		}
+		init();
+	}
+}
+
+bool Mino::HitFlagLeft()
+{
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_block[y][x] != 0)
+			{
+				// ¶
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x - 1)] != 0)
+				{
+					return true;
+				}
+				// ¶‰º
+				else if ((m_countY - (m_posY * DRAW_BLOCK_WIDTH)) > 0)
+				{
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x - 1)] != 0)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool Mino::HitFlagRight()
+{
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			if (m_block[y][x] != 0)
+			{
+				// ‰E
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x + 1)] != 0)
+				{
+					return true;
+				}
+				// ‰E‰º
+				else if ((m_countY - (m_countY * DRAW_BLOCK_WIDTH)) > 0)
+				{
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x + 1)] != 0)
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
