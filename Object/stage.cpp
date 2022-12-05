@@ -1,6 +1,7 @@
 #include "Stage.h"
 #include "common.h"
 #include "Mino.h"
+#include "Pad.h"
 
 Stage::Stage() :
 	m_backHandle(-1),
@@ -43,6 +44,20 @@ void Stage::end()
 
 void Stage::update()
 {
+	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
+	{
+		if (!HitFlagLeft())
+		{
+			m_pMino->m_getPosX() - 1;
+		}
+	}
+	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
+	{
+		if (!HitFlagRight())
+		{
+			m_pMino->m_getPosX() + 1;
+		}
+	}
 }
 
 void Stage::draw()

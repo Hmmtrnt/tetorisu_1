@@ -17,6 +17,6 @@ public:
 	virtual void draw();			// •`‰æˆ—
 
 private:
-	Mino* m_mino;
-	Stage* m_Pstage;
+	Mino* m_pMino;
+	Stage* m_pStage;
 };

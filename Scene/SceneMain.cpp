@@ -7,36 +7,36 @@
 
 SceneMain::SceneMain()
 {
-	m_mino = new Mino;
-	m_Pstage = new Stage;
+	m_pMino = new Mino;
+	m_pStage = new Stage;
 }
 
 SceneMain::~SceneMain()
 {
-	delete m_mino;
-	delete m_Pstage;
+	delete m_pMino;
+	delete m_pStage;
 }
 
 // ‰Šú‰»
 void SceneMain::init()
 {
-	m_mino->init();
-	m_Pstage->init();
+	m_pMino->init();
+	m_pStage->init();
 }
 
 // I—¹ˆ—
 void SceneMain::end()
 {
-	m_mino->end();
-	m_Pstage->end();
+	m_pMino->end();
+	m_pStage->end();
 }
 
 // XVˆ—
 SceneBase* SceneMain::update()
 {
-	m_mino->update();
-	m_Pstage->update();
-	m_mino->moveBlock();
+	m_pMino->update();
+	m_pStage->update();
+	m_pMino->moveBlock();
 	if (Pad::isTrigger(PAD_INPUT_2))
 	{
 		return (new SceneResult);
@@ -47,7 +47,7 @@ SceneBase* SceneMain::update()
 // •`‰æˆ—
 void SceneMain::draw()
 {
-	m_Pstage->draw();
-	m_mino->drawConfirm();
-	m_mino->draw();
+	m_pStage->draw();
+	m_pMino->drawConfirm();
+	m_pMino->draw();
 }
