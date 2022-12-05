@@ -2,6 +2,8 @@
 #pragma once
 #include "common.h"
 
+class Stage;
+
 class Mino
 {
 public:
@@ -18,8 +20,10 @@ public:
 	// ƒ~ƒm‚Ì“®‚­ˆ—
 	virtual void moveBlock();
 	// ƒ~ƒm‚ğŒÅ’è‚·‚éˆ—
-	//virtual void stopBlock();
+	virtual void stopBlock();
 
+	bool HitFlagLeft();
+	bool HitFlagRight();
 
 	int m_getPosX()const { return m_posX; }
 	int m_getPosY()const { return m_posY; }
@@ -27,9 +31,11 @@ public:
 	int m_block[BLOCK_HEIGHT][BLOCK_WIDTH];
 
 private:
+
 	int m_posX;
 	int m_posY;
-
 	float m_countY;
 	float m_speed;
+
+	Stage* m_pStage;
 };

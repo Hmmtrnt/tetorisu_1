@@ -4,8 +4,8 @@
 #include "Pad.h"
 
 Stage::Stage() :
-	m_backHandle(-1),
-	m_pMino(nullptr)
+	m_backHandle(-1)
+	//m_pMino(nullptr)
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
 	{
@@ -14,12 +14,12 @@ Stage::Stage() :
 			m_stage[y][x] = 0;
 		}
 	}
-	m_pMino = new Mino;
+	//m_pMino = new Mino;
 }
 
 Stage::~Stage()
 {
-	delete m_pMino;
+	//delete m_pMino;
 }
 
 void Stage::init()
@@ -44,20 +44,20 @@ void Stage::end()
 
 void Stage::update()
 {
-	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
+	/*if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
 		if (!HitFlagLeft())
 		{
-			m_pMino->m_getPosX() - 1;
+			m_pMino->m_posX--;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
 		if (!HitFlagRight())
 		{
-			m_pMino->m_getPosX() + 1;
+			m_pMino->m_posX++;
 		}
-	}
+	}*/
 }
 
 void Stage::draw()
@@ -79,71 +79,71 @@ void Stage::draw()
 	}
 }
 
-void Stage::stopBlock()
-{
-	if (m_pMino->m_getCount() > DRAW_BLOCK_WIDTH * 17)
-	{
-		for (int y = 0; y < BLOCK_HEIGHT; y++)
-		{
-			for (int x = 0; x < BLOCK_WIDTH; x++)
-			{
-				m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + x] += m_pMino->m_block[y][x];
-			}
-		}
-		init();
-	}
-}
+//void Stage::stopBlock()
+//{
+//	if (m_pMino->m_getCount() > DRAW_BLOCK_WIDTH * 17)
+//	{
+//		for (int y = 0; y < BLOCK_HEIGHT; y++)
+//		{
+//			for (int x = 0; x < BLOCK_WIDTH; x++)
+//			{
+//				m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + x] += m_pMino->m_block[y][x];
+//			}
+//		}
+//		//init();
+//	}
+//}
 
-bool Stage::HitFlagLeft()
-{
-	for (int y = 0; y < BLOCK_HEIGHT; y++)
-	{
-		for (int x = 0; x < BLOCK_WIDTH; x++)
-		{
-			if (m_pMino->m_block[y][x] != 0)
-			{
-				// 左
-				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x - 1)] != 0)
-				{
-					return true;
-				}
-				// 左下
-				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
-				{
-					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x - 1)] != 0)
-					{
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}
-
-bool Stage::HitFlagRight()
-{
-	for (int y = 0; y < BLOCK_HEIGHT; y++)
-	{
-		for (int x = 0; x < BLOCK_WIDTH; x++)
-		{
-			if (m_pMino->m_block[y][x] != 0)
-			{
-				// 右
-				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x + 1)] != 0)
-				{
-					return true;
-				}
-				// 右下
-				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
-				{
-					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x + 1)] != 0)
-					{
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}
+//bool Stage::HitFlagLeft()
+//{
+//	for (int y = 0; y < BLOCK_HEIGHT; y++)
+//	{
+//		for (int x = 0; x < BLOCK_WIDTH; x++)
+//		{
+//			if (m_pMino->m_block[y][x] != 0)
+//			{
+//				// 左
+//				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x - 1)] != 0)
+//				{
+//					return true;
+//				}
+//				// 左下
+//				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
+//				{
+//					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x - 1)] != 0)
+//					{
+//						return true;
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return false;
+//}
+//
+//bool Stage::HitFlagRight()
+//{
+//	for (int y = 0; y < BLOCK_HEIGHT; y++)
+//	{
+//		for (int x = 0; x < BLOCK_WIDTH; x++)
+//		{
+//			if (m_pMino->m_block[y][x] != 0)
+//			{
+//				// 右
+//				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x + 1)] != 0)
+//				{
+//					return true;
+//				}
+//				// 右下
+//				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
+//				{
+//					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x + 1)] != 0)
+//					{
+//						return true;
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return false;
+//}

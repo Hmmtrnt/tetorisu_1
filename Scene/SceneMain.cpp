@@ -34,7 +34,7 @@ void SceneMain::end()
 // XVˆ—
 SceneBase* SceneMain::update()
 {
-	m_pMino->update();
+	//m_pMino->update();
 	m_pStage->update();
 	m_pMino->moveBlock();
 	if (Pad::isTrigger(PAD_INPUT_2))
