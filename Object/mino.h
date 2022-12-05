@@ -10,17 +10,17 @@ public:
 	Mino();
 	virtual ~Mino();
 
-	void init();
-	void end();
-	void update();
+	virtual void init();
+	virtual void end();
+	virtual void update();
 	// •`‰æˆ—
-	void draw();
+	virtual void draw();
 	// •Ï”Šm”F—p•`‰æˆ—
-	void drawConfirm();
+	virtual void drawConfirm();
 	// ƒ~ƒm‚Ì“®‚­ˆ—
-	void moveBlock();
+	virtual void moveBlock();
 	// ƒ~ƒm‚ğŒÅ’è‚·‚éˆ—
-	void stopBlock();
+	virtual void stopBlock();
 
 
 	int m_getPosX()const { return m_posX; }
@@ -35,5 +35,5 @@ private:
 	float m_countY;
 	float m_speed;
 
-	Stage* m_Pstage;
+	Stage* m_pStage;
 };

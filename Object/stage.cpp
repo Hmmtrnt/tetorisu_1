@@ -5,14 +5,14 @@
 Stage::Stage() :
 	m_stage(),
 	m_backHandle(-1),
-	m_mino(nullptr)
+	m_pMino(nullptr)
 {
-	m_mino = new Mino;
+	m_pMino = new Mino;
 }
 
 Stage::~Stage()
 {
-	delete m_mino;
+	delete m_pMino;
 }
 
 void Stage::init()
@@ -28,7 +28,7 @@ void Stage::init()
 		}
 	}
 	m_backHandle = LoadGraph("data/back2.jpg");
-	m_mino->init();
+	m_pMino->init();
 }
 
 void Stage::end()
@@ -65,15 +65,15 @@ bool Stage::HitFlagLeft()
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
-			if (m_mino->m_block[y][x] != 0)
+			if (m_pMino->m_block[y][x] != 0)
 			{
-				if (m_stage[m_mino->m_getPosY() + y][m_mino->m_getPosX() + (x - 1)] != 0)
+				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x - 1)] != 0)
 				{
 					return true;
 				}
-				else if ((m_mino->m_getCount() - (m_mino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
+				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
 				{
-					if (m_stage[m_mino->m_getPosY() + (y + 1)][m_mino->m_getPosX() + (x - 1)] != 0)
+					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x - 1)] != 0)
 					{
 						return true;
 					}
@@ -90,15 +90,15 @@ bool Stage::HitFlagRight()
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
-			if (m_mino->m_block[y][x] != 0)
+			if (m_pMino->m_block[y][x] != 0)
 			{
-				if (m_stage[m_mino->m_getPosY() + y][m_mino->m_getPosX() + (x + 1)] != 0)
+				if (m_stage[m_pMino->m_getPosY() + y][m_pMino->m_getPosX() + (x + 1)] != 0)
 				{
 					return true;
 				}
-				else if ((m_mino->m_getCount() - (m_mino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
+				else if ((m_pMino->m_getCount() - (m_pMino->m_getPosY() * DRAW_BLOCK_WIDTH)) > 0)
 				{
-					if (m_stage[m_mino->m_getPosY() + (y + 1)][m_mino->m_getPosX() + (x + 1)] != 0)
+					if (m_stage[m_pMino->m_getPosY() + (y + 1)][m_pMino->m_getPosX() + (x + 1)] != 0)
 					{
 						return true;
 					}

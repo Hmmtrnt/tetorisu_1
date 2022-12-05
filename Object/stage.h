@@ -9,10 +9,10 @@ public:
 	Stage();
 	virtual ~Stage();
 
-	void init();
-	void end();
-	void update();
-	void draw();
+	virtual void init();
+	virtual void end();
+	virtual void update();
+	virtual void draw();
 
 	bool HitFlagLeft();
 	bool HitFlagRight();
@@ -23,5 +23,5 @@ private:
 	// ”wŒi‚Ìƒnƒ“ƒhƒ‹
 	int m_backHandle;
 
-	Mino* m_mino;
+	Mino* m_pMino;
 };
