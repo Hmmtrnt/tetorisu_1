@@ -1,5 +1,9 @@
 // ƒvƒŒƒCƒ„[
 #pragma once
+
+class Mino;
+class Stage;
+
 class Player
 {
 public:
@@ -8,9 +12,9 @@ public:
 
 	void init();
 	void end();
-	void update();
-	void draw(){}
+	void update(int posX);
 
 private:
-
+	Mino* m_pMino;
+	Stage* m_pStage;
 };

@@ -1,8 +1,7 @@
 // ƒ~ƒm
 #pragma once
 #include "common.h"
-
-class Stage;
+#include "Player.h"
 
 class Mino
 {
@@ -35,5 +34,5 @@ private:
 	float m_countY;
 	float m_speed;
 
-	Stage* m_pStage;
+	Player* m_pPlayer;
 };
