@@ -9,14 +9,14 @@ Mino::Mino() :
 	m_posY(0),
 	m_countY(0.0f),
 	m_speed(0.0f),
-	m_Pstage(nullptr)
+	m_pStage(nullptr)
 {
-	m_Pstage = new Stage;
+	m_pStage = new Stage;
 }
 
 Mino::~Mino()
 {
-	delete m_Pstage;
+	delete m_pStage;
 }
 
 void Mino::init()
@@ -35,7 +35,7 @@ void Mino::init()
 	m_countY = 0.0f;
 	// ƒ~ƒm‚Ì—Ž‚¿‚é‘¬‚³
 	m_speed = 0.5f;
-	m_Pstage->init();
+	m_pStage->init();
 }
 
 void Mino::end()
@@ -46,14 +46,14 @@ void Mino::update()
 {
 	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
-		if (!m_Pstage->HitFlagLeft())
+		if (!m_pStage->HitFlagLeft())
 		{
 			m_posX--;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
-		if (!m_Pstage->HitFlagRight())
+		if (!m_pStage->HitFlagRight())
 		{
 			m_posX++;
 		}
@@ -101,7 +101,7 @@ void Mino::stopBlock()
 		{
 			for (int x = 0; x < BLOCK_WIDTH; x++)
 			{
-				m_Pstage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
+				m_pStage->m_stage[m_posY + y][m_posX + x] += m_block[y][x];
 			}
 		}
 		init();
