@@ -50,14 +50,14 @@ void Mino::update()
 {
 	if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
-		if (!m_pStage->HitFlagLeft())
+		if (HitFlagLeft())
 		{
 			m_posX--;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
-		if (!m_pStage->HitFlagRight())
+		if (HitFlagRight())
 		{
 			m_posX++;
 		}

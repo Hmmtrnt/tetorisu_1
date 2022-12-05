@@ -14,11 +14,6 @@ public:
 	virtual void end();
 	virtual void update();
 	virtual void draw();
-	// ƒ~ƒm‚ğŒÅ’è‚·‚éˆ—
-	//virtual void stopBlock();
-
-	/*bool HitFlagLeft();
-	bool HitFlagRight();*/
 
 	int m_stage[STAGE_HEIGHT][STAGE_WIDTH];
 
@@ -26,5 +21,4 @@ private:
 	// ”wŒi‚Ìƒnƒ“ƒhƒ‹
 	int m_backHandle;
 
-	//Mino* m_pMino;
 };
