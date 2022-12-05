@@ -4,13 +4,20 @@
 #include "Pad.h"
 
 Mino::Mino() :
-	m_block(),
 	m_posX(4),
 	m_posY(0),
 	m_countY(0.0f),
 	m_speed(0.0f),
 	m_pStage(nullptr)
 {
+	for (int y = 0; y < BLOCK_HEIGHT; y++)
+	{
+		for (int x = 0; x < BLOCK_WIDTH; x++)
+		{
+			m_block[y][x] = 0;
+		}
+	}
+
 	m_pStage = new Stage;
 }
 
