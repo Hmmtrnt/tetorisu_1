@@ -24,10 +24,53 @@ namespace kMino
 	const int kColor_Black = GetColor(0, 0, 0);		// çï
 
 	// É~ÉmÇÃå`
+	// OÉ~Ém
 	constexpr int kOMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
 		{0,0,0,0},
 		{0,1,1,0},
 		{0,1,1,0},
+		{0,0,0,0}
+	};
+	// IÉ~Ém
+	constexpr int kIMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,1,0},
+		{0,0,1,0},
+		{0,0,1,0},
+		{0,0,1,0}
+	};
+	// SÉ~Ém
+	constexpr int kSMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,0,1,1},
+		{0,1,1,0},
+		{0,0,0,0}
+	};
+	// ZÉ~Ém
+	constexpr int kZMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,1,1,0},
+		{0,0,1,1},
+		{0,0,0,0}
+	};
+	// JÉ~Ém
+	constexpr int kJMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,0,1,0},
+		{0,0,1,0},
+		{0,1,1,0}
+	};
+	// LÉ~Ém
+	constexpr int kLMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,1,0,0},
+		{0,1,0,0},
+		{0,1,1,0}
+	};
+	// TÉ~Ém
+	constexpr int kTMino[BLOCK_HEIGHT][BLOCK_WIDTH] = {
+		{0,0,0,0},
+		{0,0,1,0},
+		{0,1,1,1},
 		{0,0,0,0}
 	};
 }
