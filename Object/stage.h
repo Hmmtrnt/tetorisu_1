@@ -1,3 +1,4 @@
+// ステージ
 #pragma once
 #include "common.h"
 
