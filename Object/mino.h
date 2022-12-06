@@ -44,7 +44,6 @@ public:
 	// À•W‚È‚Ç‚Ìî•ñæ“¾
 	int m_getPosX()const { return m_posX; }
 	int m_getPosY()const { return m_posY; }
-	int m_getCount()const { return (int)m_countY; }
 
 	int m_block[BLOCK_HEIGHT][BLOCK_WIDTH];
 
