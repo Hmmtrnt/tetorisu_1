@@ -142,7 +142,9 @@ void Mino::draw()
 // 確認用描画
 void Mino::drawConfirm()
 {
-	DrawFormatString(0, 20, kMino::kColor_Black, "m_count = %d", m_countY);
+	DrawFormatString(0, 0, kMino::kColor_Black, "m_posX = %d", m_posX);
+	DrawFormatString(0, 20, kMino::kColor_Black, "m_posY = %d", m_posY);
+	DrawFormatString(0, 40, kMino::kColor_Black, "m_count = %d", m_countY);
 }
 
 // ミノの落下処理
