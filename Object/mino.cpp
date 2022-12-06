@@ -64,25 +64,29 @@ void Mino::end()
 
 void Mino::update()
 {
+	/*if (m_countY > DRAW_BLOCK_WIDTH * 17 - 2)
+	{
+		saveMino();
+		initRevival();
+		makeMino();
+	}*/
+	/*if (m_countY > DRAW_BLOCK_WIDTH * 17 - 2)
+	{
+		return;
+	}*/
 	/*if (Pad::isTrigger(PAD_INPUT_LEFT) == 1)
 	{
-		wallLeft();
-		if (m_hitMinoFlag == false)
+		if (!HitFlagLeft())
 		{
 			m_posX--;
 		}
 	}
 	if (Pad::isTrigger(PAD_INPUT_RIGHT) == 1)
 	{
-		wallRight();
-		if (m_hitMinoFlag == false)
+		if (!HitFlagRight())
 		{
 			m_posX++;
 		}
-	}*/
-	/*if (m_countY > DRAW_BLOCK_WIDTH * 17 - 2)
-	{
-		return;
 	}*/
 	if (!HitFlagBottom())
 	{
@@ -112,12 +116,16 @@ void Mino::update()
 			m_posY = DRAW_BLOCK_WIDTH * 17 - 2;
 		}
 	}
-	saveMino();
-	makeMino();
+	
+	
+	/*saveMino();
+	makeMino();*/
 }
 
+// 描画処理
 void Mino::draw()
 {
+	// ミノの描画
 	for (int y = 0; y < BLOCK_HEIGHT; y++)
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
@@ -137,10 +145,9 @@ void Mino::drawConfirm()
 	DrawFormatString(0, 20, kMino::kColor_Black, "m_count = %d", m_countY);
 }
 
+// ミノの落下処理
 void Mino::moveBlock()
 {
-	/*m_countY += m_speed;
-	m_posY = (int)m_countY / DRAW_BLOCK_WIDTH;*/
 	time--;
 	if (time <= 0)
 	{
@@ -148,15 +155,20 @@ void Mino::moveBlock()
 		m_countY += DRAW_BLOCK_WIDTH;
 	}
 	
-	//m_posY = (int)m_countY / DRAW_BLOCK_WIDTH;
 	// 盤面の底についたら下へは動かない
 	if (m_countY > DRAW_BLOCK_WIDTH * 17)
 	{
 		m_countY = DRAW_BLOCK_WIDTH * 17;
 		m_posY = DRAW_BLOCK_WIDTH * 17;
 	}
+	/*if (HitFlagBottom())
+	{
+		m_countY = DRAW_BLOCK_WIDTH * 17;
+		m_posY = DRAW_BLOCK_WIDTH * 17;
+	}*/
 }
 
+// ミノの固定処理
 void Mino::stopBlock()
 {
 	
@@ -168,7 +180,10 @@ void Mino::saveMino()
 	{
 		for (int x = 0; x < BLOCK_WIDTH; x++)
 		{
-			m_pStage->m_stage[m_posY + y][m_posX + x];
+			if (m_countY > DRAW_BLOCK_WIDTH * 17 - 2)
+			{
+				m_pStage->m_stage[m_posY + y][m_posX + x] = m_block[m_posY + y][m_posX + x];
+			}
 		}
 	}
 }
@@ -249,14 +264,14 @@ bool Mino::HitFlagLeft()
 			if (m_block[y][x] != 0)
 			{
 				// 左
-				if (m_pStage->m_stage[m_posY + y][m_posX + (x - 1)] == 0)
+				if (m_pStage->m_stage[m_posY + y][m_posX + (x - 1)] != 0)
 				{
 					return true;
 				}
 				// 左下
 				else if ((int)(m_countY - (m_posY * DRAW_BLOCK_WIDTH)) > 0)
 				{
-					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x - 1)] == 0)
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x - 1)] != 0)
 					{
 						return true;
 					}
@@ -278,14 +293,14 @@ bool Mino::HitFlagRight()
 			if (m_block[y][x] != 0)
 			{
 				// 右
-				if (m_pStage->m_stage[m_posY + y][m_posX + (x + 1)] == 0)
+				if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + x] != 0)
 				{
 					return true;
 				}
 				// 右下
 				else if ((int)(m_countY - (m_countY * DRAW_BLOCK_WIDTH)) > 0)
 				{
-					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x + 1)] == 0)
+					if (m_pStage->m_stage[m_posY + (y + 1)][m_posX + (x + 1)] != 0)
 					{
 						return true;
 					}
@@ -296,7 +311,7 @@ bool Mino::HitFlagRight()
 	return false;
 }
 
-// 地面の判定
+// 地面の判定：true->地面についた、false->地面についていない
 bool Mino::HitFlagBottom()
 {
 	for (int y = 0; y < BLOCK_HEIGHT; y++)

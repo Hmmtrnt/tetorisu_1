@@ -1,6 +1,5 @@
 #include "Stage.h"
 #include "common.h"
-#include "Mino.h"
 #include "Pad.h"
 
 Stage::Stage() :
@@ -66,7 +65,7 @@ void Stage::draw()
 		{
 			if (m_stage[y][x] == 1)
 			{
-				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH,200 + y * DRAW_BLOCK_WIDTH, kStage::kColor_Red, "Å°");
+				DrawFormatString(200 + x * DRAW_BLOCK_WIDTH, 200 + y * DRAW_BLOCK_WIDTH, kStage::kColor_Red, "Å°");
 			}
 			else if (m_stage[y][x] == 9)
 			{
